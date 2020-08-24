@@ -1,22 +1,19 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class OpenTheDoors : MonoBehaviour {
 	public Animation anim;
-	public bool Chave=false;
+	public bool Chave = false;
 
-
-
-		void OnTriggerEnter(Collider other) 
+	void OnTriggerEnter(Collider other) 
+	{
+		if (Chave && other.gameObject.CompareTag("Player"))
 		{
-			if (other.gameObject.CompareTag("Player"))
-			{
-			anim.Play("open");
-			}
+		    anim.Play("open");
 		}
+	}
 	void OnTriggerExit(Collider other) 
 	{
-		if (other.gameObject.CompareTag("Player"))
+		if (Chave && other.gameObject.CompareTag("Player"))
 		{
 			anim.Play("close");
 		}
@@ -26,8 +23,4 @@ public class OpenTheDoors : MonoBehaviour {
 	{
 		Chave = true;
 	}
-
-
 }
-
-
